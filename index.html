@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1426">
+<meta name="description" content="The personal website of Salil Rashid Shaikh — technology portfolio and matrimonial profile.">
+<title>Salil Rashid Shaikh | Personal & Professional</title>
+<style>
+:root{
+ --navy:#0b1426;--navy2:#101f38;--blue:#4d8cff;--ice:#dce8ff;--white:#f8faff;
+ --muted:#aebbd0;--gold:#b68a4a;--gold2:#e4c68d;--cream:#fbf7ef;--ink:#28251f;
+ --line:rgba(255,255,255,.12);--shadow:0 24px 70px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--navy);color:var(--white);line-height:1.6}
+a{color:inherit;text-decoration:none}button{font:inherit}
+.wrap{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:rgba(8,16,31,.86);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:74px}
+.brand{font-weight:800;letter-spacing:.2px}.brand span{color:var(--blue)}
+.navlinks{display:flex;align-items:center;gap:22px;color:#c5d0e2;font-size:.92rem}
+.navlinks a:hover{color:white}.nav-cta{border:1px solid rgba(77,140,255,.55);padding:9px 14px;border-radius:999px}
+.menu-btn{display:none;background:none;color:white;border:1px solid var(--line);padding:8px 12px;border-radius:10px}
+.hero{position:relative;overflow:hidden;padding:82px 0 72px;background:radial-gradient(circle at 78% 30%,rgba(58,119,227,.22),transparent 28%),linear-gradient(135deg,#0b1426,#101f38 72%,#122748)}
+.hero:after{content:"";position:absolute;inset:auto -10% -220px 35%;height:360px;background:radial-gradient(ellipse,rgba(77,140,255,.12),transparent 68%);pointer-events:none}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:60px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:inline-flex;gap:9px;align-items:center;color:#a9c8ff;text-transform:uppercase;letter-spacing:.16em;font-size:.76rem;font-weight:800}
+.dot{height:7px;width:7px;background:#5be0ae;border-radius:50%;box-shadow:0 0 0 5px rgba(91,224,174,.12)}
+h1{font-size:clamp(2.6rem,5.5vw,4.7rem);line-height:1.04;letter-spacing:-.055em;margin:18px 0}
+h1 span{color:#82adff}.hero p{max-width:650px;color:#c0cce0;font-size:1.08rem}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 19px;border-radius:12px;font-weight:750;border:1px solid transparent;transition:.2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--blue);color:#061127;box-shadow:0 12px 28px rgba(77,140,255,.2)}
+.btn-ghost{border-color:rgba(255,255,255,.2);color:#f7faff;background:rgba(255,255,255,.04)}
+.quickfacts{display:flex;gap:24px;flex-wrap:wrap;color:#aebbd0;font-size:.88rem}.quickfacts b{color:white}
+.hero-photo-wrap{position:relative;max-width:390px;margin:auto}
+.hero-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 24%;border-radius:28px;border:1px solid rgba(255,255,255,.2);box-shadow:var(--shadow);display:block}
+.photo-label{position:absolute;left:-24px;bottom:26px;background:rgba(255,255,255,.96);color:#17223a;border-radius:15px;padding:13px 17px;box-shadow:var(--shadow);font-size:.88rem}
+.photo-label strong{display:block;font-size:1rem}.photo-label span{color:#647087}
+.section{padding:86px 0}.section-head{max-width:680px;margin-bottom:34px}.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:#8db4ff;font-weight:800}
+h2{font-size:clamp(2rem,3.5vw,3rem);line-height:1.12;letter-spacing:-.04em;margin:10px 0 14px}
+.section-head p{color:var(--muted);margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{padding:24px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.02))}
+.card h3{margin:8px 0 7px;font-size:1.1rem}.card p{margin:0;color:var(--muted);font-size:.94rem}
+.icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:rgba(77,140,255,.13);color:#8db4ff;font-size:1.15rem}
+.experience{background:#0e1a30}.timeline{display:grid;gap:16px}
+.timeline-item{display:grid;grid-template-columns:190px 1fr;gap:26px;padding:24px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.025)}
+.date{color:#8db4ff;font-weight:800;font-size:.88rem}.timeline-item h3{margin:0 0 4px}.timeline-item .company{color:#dbe5f7;font-weight:650}.timeline-item p{margin:10px 0 0;color:var(--muted)}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.tag{border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.04);color:#d8e2f3;padding:6px 10px;border-radius:999px;font-size:.8rem}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.skillbox{padding:22px;border-radius:18px;background:#101f38;border:1px solid var(--line)}.skillbox h3{margin:0 0 12px}.skillbox p{color:var(--muted);margin:0;font-size:.94rem}
+.project-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.project{padding:26px;border-radius:20px;background:linear-gradient(145deg,#132642,#0d192d);border:1px solid var(--line)}.project .number{font-size:.8rem;color:#8db4ff;font-weight:850;letter-spacing:.1em}.project h3{font-size:1.3rem;margin:10px 0}.project p{color:var(--muted);margin:0}
+.education-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.edu{border-left:3px solid var(--blue);padding:7px 0 7px 20px}.edu h3{margin:0}.edu p{color:var(--muted);margin:5px 0}
+.resume-banner{display:flex;justify-content:space-between;align-items:center;gap:25px;padding:30px;border-radius:22px;background:linear-gradient(110deg,#172d4d,#11203a);border:1px solid rgba(130,173,255,.24)}
+/* Matrimonial section */
+.matrimonial{background:var(--cream);color:var(--ink);padding:88px 0}
+.matrimonial .kicker{color:#97713b}.matrimonial .section-head p{color:#6e675c}
+.matri-hero{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center;margin:34px 0 46px}
+.matri-photo-wrap{position:relative}.matri-photo{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 20%;display:block;border-radius:24px;box-shadow:0 22px 60px rgba(61,43,20,.15)}
+.matri-stamp{position:absolute;right:-13px;bottom:20px;background:#fffdf9;color:#86652f;border:1px solid #e8d8b9;padding:12px 16px;border-radius:13px;font-weight:800;box-shadow:0 12px 30px rgba(61,43,20,.1)}
+.matri-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.3rem,4vw,3.8rem);line-height:1.05;color:#30271b;margin:0 0 10px;letter-spacing:-.04em}
+.matri-subtitle{color:#8c6b37;font-weight:750;letter-spacing:.08em;text-transform:uppercase;font-size:.8rem}
+.matri-intro{color:#655e53;font-size:1.03rem;max-width:570px}
+.matri-pills{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}.matri-pill{background:#f0e6d4;border:1px solid #e4d3b5;border-radius:999px;padding:8px 12px;color:#5b492e;font-size:.86rem}
+.matri-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.matri-card{border:1px solid #e8dcc7;border-radius:18px;background:rgba(255,255,255,.68);padding:23px}
+.matri-card h3{font-family:Georgia,serif;font-size:1.25rem;margin:0 0 14px;color:#49371d}
+.detail{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px solid #eee4d3;font-size:.93rem}.detail:last-child{border-bottom:0}.detail span:first-child{color:#817665}.detail strong{text-align:right;font-weight:700;color:#332d24}
+.family-list{padding-left:18px;margin:0;color:#5f574b}.family-list li{padding:5px 0}
+.contact-card{margin-top:18px;background:#f0e5d1;border:1px solid #e0ceb0;border-radius:18px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.contact-card p{margin:4px 0;color:#66583f}.contact-card .btn{background:#8b6834;color:white}
+footer{background:#070e1c;color:#98a8c1;padding:26px 0;font-size:.88rem}.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.small-note{font-size:.8rem;color:#8d9ab0;margin-top:16px}
+@media(max-width:850px){.hero-grid,.matri-hero{grid-template-columns:1fr;gap:35px}.hero-photo-wrap{max-width:340px}.cards,.skills-grid{grid-template-columns:repeat(2,1fr)}.navlinks{gap:12px}.timeline-item{grid-template-columns:1fr;gap:6px}.matri-photo-wrap{max-width:350px}.matri-hero{gap:28px}}
+@media(max-width:600px){.wrap{width:min(100% - 28px,1160px)}.nav{min-height:64px}.menu-btn{display:block}.navlinks{display:none;position:absolute;left:0;right:0;top:64px;padding:18px;background:#0b1426;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.navlinks.open{display:flex}.navlinks a{padding:8px 10px}.hero{padding:56px 0}.hero-grid{gap:34px}h1{font-size:2.8rem}.section,.matrimonial{padding:62px 0}.cards,.skills-grid,.project-grid,.education-grid,.matri-cards{grid-template-columns:1fr}.resume-banner{align-items:flex-start;flex-direction:column}.photo-label{left:-8px;bottom:16px}.detail{font-size:.88rem}.matri-stamp{right:-5px}.quickfacts{gap:12px}}
+
+/* AI-inspired ambient motion, kept lightweight and accessible */
+body{isolation:isolate} body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.25;background-image:radial-gradient(circle at 15% 25%,rgba(87,145,255,.20) 0 1px,transparent 2px),radial-gradient(circle at 80% 70%,rgba(168,115,255,.18) 0 1px,transparent 2px),linear-gradient(115deg,transparent 48%,rgba(94,139,255,.055) 49%,transparent 50%);background-size:84px 84px,116px 116px,180px 180px;animation:ai-drift 28s linear infinite}
+@keyframes ai-drift{to{background-position:84px 84px,-116px 116px,180px -180px}}
+.card,.project,.skillbox,.timeline-item,.matri-card{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.card:hover,.project:hover,.skillbox:hover{transform:translateY(-4px);border-color:rgba(110,160,255,.45);box-shadow:0 16px 38px rgba(0,0,0,.16)}
+.btn:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #8db4ff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#home">Salil <span>Shaikh.</span></a>
+  <button class="menu-btn" aria-label="Open menu" onclick="document.querySelector('.navlinks').classList.toggle('open')">Menu ☰</button>
+  <nav class="navlinks">
+   <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#matrimonial">Matrimonial</a><a class="nav-cta" href="#contact">Contact</a>
+  </nav>
+ </div>
+</header>
+<main>
+<section class="hero" id="home">
+ <div class="wrap hero-grid">
+  <div>
+   <div class="eyebrow"><span class="dot"></span> Personal & Professional Profile</div>
+   <h1>Salil Rashid<br><span>Shaikh</span></h1>
+   <p>Technology professional with a DevOps background, hands-on cloud and automation projects, and a current role as an Artificial Intelligence Counsellor at House of Edtech.</p>
+   <div class="hero-actions">
+    <a class="btn btn-primary" href="#projects">Explore Tech Portfolio ↗</a>
+    <a class="btn btn-ghost" href="#matrimonial">View Matrimonial Profile ♡</a>
+   </div>
+   <div class="quickfacts"><span>⌁ <b>Pune, Maharashtra</b></span><span>✉ <b>salilshaikh88@gmail.com</b></span></div>
+  </div>
+  <div class="hero-photo-wrap">
+   <img class="hero-photo" src="assets/professional-suit.jpeg" alt="Salil Shaikh in a navy suit">
+   <div class="photo-label"><strong>DevOps · Cloud · AI</strong><span>Technology & people-focused work</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">About me</div><h2>Building, learning, and connecting.</h2><p>My journey combines an engineering foundation with cloud infrastructure, automation, monitoring, and AI-focused counselling. I enjoy solving practical problems and making technology easier to understand.</p></div>
+  <div class="cards">
+   <article class="card"><div class="icon">⌘</div><h3>Cloud & DevOps</h3><p>Experience and project work with AWS, Terraform, containers, Kubernetes, and CI/CD workflows.</p></article>
+   <article class="card"><div class="icon">◉</div><h3>Monitoring & Reliability</h3><p>Monitoring and alerting with Prometheus, Grafana, Alertmanager, and related observability tools.</p></article>
+   <article class="card"><div class="icon">✦</div><h3>AI Counselling</h3><p>Helping people explore AI learning opportunities in my current role at House of Edtech.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section experience" id="experience">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">Career journey</div><h2>Experience</h2><p>A snapshot of my professional journey. Dates are shown at year level where exact months need final confirmation.</p></div>
+  <div class="timeline">
+   <article class="timeline-item">
+    <div class="date">October 2026 – Present*</div>
+    <div><h3>Artificial Intelligence Counsellor</h3><div class="company">House of Edtech · Pune, Maharashtra</div><p>Supporting prospective learners with AI-related learning options, understanding their goals, explaining suitable programs, and maintaining helpful follow-ups.</p><div class="tags"><span class="tag">AI Education</span><span class="tag">Consultative Communication</span><span class="tag">Learner Guidance</span></div></div>
+   </article>
+   <article class="timeline-item">
+    <div class="date">2025 – 2026*</div>
+    <div><h3>DevOps Engineer / DevOps Intern</h3><div class="company">Gosure Infoservices · Pune, Maharashtra</div><p>Resume highlights include AWS infrastructure, Docker and Kubernetes deployments, CI/CD pipelines, monitoring and alerting, infrastructure automation, and troubleshooting. The exact job title and dates should be confirmed before publishing.</p><div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">CI/CD</span><span class="tag">Monitoring</span></div></div>
+   </article>
+  </div>
+  <p class="small-note">*Please confirm the exact employment dates and Gosure title before publishing this site publicly.</p>
+ </div>
+</section>
+
+<section class="section" id="skills">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">Toolkit</div><h2>Technical skills</h2><p>Tools and technologies listed in my resume and project work.</p></div>
+  <div class="skills-grid">
+   <div class="skillbox"><h3>Cloud platforms</h3><p>AWS EC2, S3, VPC, RDS, IAM, Lambda, CloudFront, CloudWatch, EKS, SNS, EBS, ELB, Route 53</p></div>
+   <div class="skillbox"><h3>Infrastructure as Code</h3><p>Terraform, providers, state, remote backends, modules, workspaces, provisioners</p></div>
+   <div class="skillbox"><h3>CI/CD & DevOps</h3><p>Jenkins, GitHub Actions, Argo CD, Maven, Nexus</p></div>
+   <div class="skillbox"><h3>Containers & orchestration</h3><p>Docker, Kubernetes, Deployments, Services, HPA, Ingress, Helm</p></div>
+   <div class="skillbox"><h3>Monitoring & logging</h3><p>Prometheus, Grafana, Alertmanager, Loki, Node Exporter</p></div>
+   <div class="skillbox"><h3>Security & version control</h3><p>IAM, RBAC, Security Groups, SonarQube, Trivy, Gitleaks, Git, GitHub</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="section experience" id="projects">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">Selected work</div><h2>Projects</h2><p>Project summaries are based on the supplied resume. Links can be added when you choose the repositories you want to feature.</p></div>
+  <div class="project-grid">
+   <article class="project"><div class="number">PROJECT 01</div><h3>AI-Based X-Ray Detection System</h3><p>Worked on deployment and infrastructure practices around an AI application: optimized Docker images, automated CI/CD with GitHub Actions, deployed to Amazon EKS using Terraform, and monitored system health with Prometheus and Grafana.</p><div class="tags"><span class="tag">Docker</span><span class="tag">EKS</span><span class="tag">Terraform</span><span class="tag">Prometheus</span><span class="tag">Trivy</span></div></article>
+   <article class="project"><div class="number">PROJECT 02</div><h3>Microservices-Based E-commerce Application</h3><p>Designed cloud infrastructure with Terraform and reusable modules, worked with Kubernetes ingress and GitOps deployments, and set up CI/CD quality checks and monitoring dashboards.</p><div class="tags"><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Kubernetes</span><span class="tag">Argo CD</span><span class="tag">Grafana</span></div></article>
+   <article class="project"><div class="number">PROJECT 03</div><h3>Monitoring & Alerting</h3><p>Built a monitoring setup using Prometheus, Grafana, Node Exporter, and Alertmanager to visualize infrastructure metrics and raise alerts for service or resource issues.</p><div class="tags"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Alertmanager</span></div></article>
+   <article class="project"><div class="number">PROJECT 04</div><h3>3-Tier DevOps Mega Project</h3><p>A three-tier DevOps project organized around the application’s presentation, application, and data layers, with emphasis on infrastructure, deployment automation, and delivery workflows.</p><div class="tags"><span class="tag">Three-Tier Architecture</span><span class="tag">DevOps</span><span class="tag">CI/CD</span><span class="tag">Cloud & Deployment</span></div></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="education">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">Education & learning</div><h2>Education</h2></div>
+  <div class="education-grid">
+   <div class="edu"><h3>B.Tech. — Electronics & Telecommunication Engineering</h3><p>Deogiri Institute of Engineering and Management Studies (DIEMS), Aurangabad</p><p>Completed 2023 · 8.4 CGPA</p></div>
+   <div class="edu"><h3>Diploma — Computer Science & Technology</h3><p>Institution and completion year to be confirmed.</p><p>Reported completion year: 2020</p></div>
+  </div>
+  <div style="margin-top:34px" class="section-head"><div class="kicker">Training & certificates</div><h2>Continuous learning</h2><p>Resume lists Udemy learning/certificates in AWS, Terraform, Jenkins, GCP, Java, and SQL. These are presented as training topics, not as vendor-issued professional certifications.</p></div>
+  <div class="tags"><span class="tag">AWS · Udemy</span><span class="tag">Terraform · Udemy</span><span class="tag">Jenkins · Udemy</span><span class="tag">GCP · Udemy</span><span class="tag">Java · Udemy</span><span class="tag">SQL · Udemy</span></div>
+  <div class="resume-banner" style="margin-top:34px">
+   <div><div class="kicker">Resume</div><h3 style="margin:7px 0 3px">Want the details?</h3><p style="margin:0;color:#b9c8de">View or download my current resume PDF.</p></div>
+   <a class="btn btn-primary" href="assets/Salil_Shaikh_Resume.pdf" target="_blank" rel="noopener">View Resume ↗</a>
+  </div>
+ </div>
+</section>
+
+<section class="matrimonial" id="matrimonial">
+ <div class="wrap">
+  <div class="section-head"><div class="kicker">Personal profile</div><h2 style="font-family:Georgia,serif;color:#30271b">Matrimonial Profile</h2><p>A respectful introduction to my background, education, career, and family.</p></div>
+  <div class="matri-hero">
+   <div class="matri-photo-wrap">
+    <img class="matri-photo" src="assets/matrimonial-current.jpeg" alt="Salil Shaikh in a light blue shirt and cap">
+    <div class="matri-stamp">Unmarried · 1998</div>
+   </div>
+   <div>
+    <div class="matri-subtitle">A little about me</div>
+    <h2 class="matri-title">Salil Rashid Shaikh</h2>
+    <p class="matri-intro">An engineering graduate working as an Artificial Intelligence Counsellor at House of Edtech in Pune, with a background in DevOps and cloud technologies. My hometown is Aurangabad, Maharashtra.</p>
+    <div class="matri-pills"><span class="matri-pill">B.Tech. Graduate</span><span class="matri-pill">AI Counsellor</span><span class="matri-pill">Aurangabad, Maharashtra</span></div>
+   </div>
+  </div>
+  <div class="matri-cards">
+   <article class="matri-card"><h3>Personal details</h3>
+    <div class="detail"><span>Date of birth</span><strong>06 August 1998</strong></div>
+    <div class="detail"><span>Height</span><strong>5 ft 7 in</strong></div>
+    <div class="detail"><span>Marital status</span><strong>Unmarried</strong></div>
+    <div class="detail"><span>Hometown</span><strong>Aurangabad, Maharashtra</strong></div>
+   </article>
+   <article class="matri-card"><h3>Education & career</h3>
+    <div class="detail"><span>Qualification</span><strong>B.Tech. — Electronics & Telecommunication</strong></div>
+    <div class="detail"><span>Diploma</span><strong>Computer Science & Technology</strong></div>
+    <div class="detail"><span>Occupation</span><strong>Artificial Intelligence Counsellor</strong></div>
+    <div class="detail"><span>Company</span><strong>House of Edtech, Pune</strong></div>
+   </article>
+   <article class="matri-card"><h3>Family details</h3>
+    <div class="detail"><span>Father</span><strong>Rashid Mehboob Shaikh — Businessman</strong></div>
+    <div class="detail"><span>Mother</span><strong>Bismilla Rashid Shaikh — Homemaker</strong></div>
+    <ul class="family-list"><li><strong>Samir Rashid Shaikh</strong> — B.Pharm, final year (pursuing)</li><li><strong>Awez Rashid Shaikh</strong> — Medical aspirant, preparing for MBBS</li></ul>
+   </article>
+   <article class="matri-card"><h3>Family background</h3>
+    <p style="margin:0;color:#655b4b">A well-educated and respectable family with an appreciation for education, personal growth, and family values.</p>
+    <p style="margin:14px 0 0;color:#655b4b"><strong>Address:</strong> Aurangabad, Maharashtra 431001</p>
+   </article>
+  </div>
+  <div class="contact-card" id="contact">
+   <div><strong style="font-family:Georgia,serif;font-size:1.25rem">Contact</strong><p>Email: <a href="mailto:salilshaikh88@gmail.com">salilshaikh88@gmail.com</a></p><p>Phone: <a href="tel:+919763121695">+91 97631 21695</a></p></div>
+   <a class="btn" href="mailto:salilshaikh88@gmail.com?subject=Matrimonial%20Profile%20Enquiry">Send an Email ↗</a>
+  </div>
+  <p class="small-note" style="color:#8a7c68">Privacy note: this starter website shows your phone and email because you supplied them for contact. Before publishing publicly, consider whether you want these details visible to everyone. Your full street address has been shortened to city and PIN code.</p>
+ </div>
+</section>
+</main>
+<footer><div class="wrap footer-row"><span>© <span id="year"></span> Salil Rashid Shaikh</span><span>Personal identity · Technology · Family</span><span><a href="https://www.linkedin.com/in/salil-shaikh9081/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/Salil9081" target="_blank" rel="noopener">GitHub</a> · <a href="https://medium.com/@salilshaikh88" target="_blank" rel="noopener">Medium</a></span></div></footer>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+document.querySelectorAll('.navlinks a').forEach(a => a.addEventListener('click', () => document.querySelector('.navlinks').classList.remove('open')));
+</script>
+</body>
+</html>
