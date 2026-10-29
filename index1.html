@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#030014">
+<meta name="description" content="The personal website of Salil Rashid Shaikh — AI & DevOps Portfolio and Matrimonial Profile.">
+<title>Salil Rashid Shaikh | Personal & Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #030014;
+  --bg-card: rgba(15, 12, 41, 0.65);
+  --bg-card-hover: rgba(30, 24, 75, 0.8);
+  --primary-blue: #00d2ff;
+  --primary-purple: #9d4edd;
+  --accent-glow: #7b2cbf;
+  --text-main: #f3f0ff;
+  --text-muted: #a09abc;
+  --border-glow: rgba(157, 78, 221, 0.35);
+  --gold: #f7d070;
+  --radius-lg: 20px;
+  --radius-md: 12px;
+  --shadow-glow: 0 0 30px rgba(123, 44, 191, 0.35);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Background Canvas */
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Layout Utilities */
+.wrap {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* Typography & Glow Header */
+h1, h2, h3, h4, .brand-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.glow-text {
+  background: linear-gradient(135deg, #00d2ff 0%, #9d4edd 50%, #f72585 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  filter: drop-shadow(0 0 12px rgba(157, 78, 221, 0.4));
+}
+
+/* Header & Nav */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(3, 0, 20, 0.75);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.brand-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo span {
+  width: 12px;
+  height: 12px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary-blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-links a:hover, .nav-links a.active {
+  color: #fff;
+  text-shadow: 0 0 8px var(--primary-purple);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Futuristic Glass Card */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transition: 0.6s;
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 210, 255, 0.6);
+  box-shadow: 0 12px 40px rgba(123, 44, 191, 0.4), 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+/* Hero Section */
+.hero {
+  padding: 80px 0 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 30px;
+  background: rgba(157, 78, 221, 0.15);
+  border: 1px solid rgba(157, 78, 221, 0.4);
+  color: var(--primary-blue);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(157, 78, 221, 0.2);
+}
+
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--primary-blue);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary-blue);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 210, 255, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-purple) 0%, var(--primary-blue) 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(157, 78, 221, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(0, 210, 255, 0.6);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid var(--border-glow);
+}
+
+.btn-outline:hover {
+  background: rgba(157, 78, 221, 0.2);
+  border-color: var(--primary-blue);
+}
+
+.hero-card {
+  text-align: center;
+  position: relative;
+}
+
+.hero-img-wrapper {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 6px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), #f72585);
+  box-shadow: 0 0 35px rgba(157, 78, 221, 0.5);
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--bg-deep);
+}
+
+/* Sections */
+.section {
+  padding: 60px 0;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  font-size: 1rem;
+}
+
+/* Grid Layouts */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Profile Photo Cards */
+.photo-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-glow);
+  background: var(--bg-card);
+  transition: all 0.4s ease;
+}
+
+.photo-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.photo-card-info {
+  padding: 16px;
+  background: rgba(3, 0, 20, 0.85);
+  backdrop-filter: blur(8px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--border-glow);
+}
+
+.photo-card-info h4 {
+  font-size: 1.1rem;
+  color: var(--primary-blue);
+}
+
+.photo-card-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Detail Lists */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.info-item .label {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.info-item .value {
+  font-weight: 600;
+  color: #fff;
+  text-align: right;
+}
+
+/* Skills Badges */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.skill-tag {
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  color: var(--primary-blue);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  background: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: #fff;
+  box-shadow: 0 0 12px var(--primary-purple);
+}
+
+/* Footer */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border-glow);
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 60px;
+  background: rgba(3, 0, 20, 0.9);
+}
+
+/* Mobile Responsive */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; text-align: center; }
+  .hero-actions { justify-content: center; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero h1 { font-size: 2.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Animated AI Neural Network Canvas Background -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Header Nav -->
+<header>
+  <div class="wrap nav-container">
+    <a href="#" class="brand-logo">
+      <span></span> Salil Rashid Shaikh
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#devops">DevOps & Cloud</a></li>
+      <li><a href="#matrimonial">Matrimonial Profile</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- Hero Section -->
+  <section class="hero" id="about">
+    <div>
+      <div class="badge">
+        <span class="badge-dot"></span> DevOps Administrator & Cloud Specialist
+      </div>
+      <h1>Building Scalable Infrastructure & Modern Web Solutions</h1>
+      <p>Passionate DevOps Administrator with expertise in Google Cloud Platform (GCP), Microsoft Azure sandboxes, PostgreSQL database architecture, and automation. Combining technical excellence with strong communication and leadership skills.</p>
+      
+      <div class="hero-actions">
+        <a href="assets/Salil_Shaikh_Resume.pdf" class="btn btn-primary" download target="_blank">
+          📄 Download Resume (PDF)
+        </a>
+        <a href="#matrimonial" class="btn btn-outline">
+          💍 Matrimonial Details
+        </a>
+      </div>
+    </div>
+
+    <div class="glass-card hero-card">
+      <div class="hero-img-wrapper">
+        <img src="assets/professional-suit.jpeg" alt="Salil Rashid Shaikh" class="hero-img">
+      </div>
+      <h3>Salil Rashid Shaikh</h3>
+      <p style="color: var(--primary-blue); font-size: 0.95rem; margin-top: 4px;">DevOps Specialist & Infrastructure Manager</p>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 8px;">📍 Chhatrapati Sambhajinagar (Aurangabad), Maharashtra</p>
+    </div>
+  </section>
+
+  <!-- DevOps & Technical Expertise Section -->
+  <section class="section" id="devops">
+    <h2 class="section-title">Technical <span class="glow-text">Expertise & Skills</span></h2>
+    <p class="section-subtitle">A breakdown of technical proficiencies, cloud infrastructure, and administrative capabilities</p>
+
+    <div class="grid-3">
+      <div class="glass-card">
+        <h3 style="color: var(--primary-blue); margin-bottom: 12px;">☁️ Cloud & DevOps</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Hands-on experience in managing cloud environments, deployment pipelines, and infrastructure sandboxes.</p>
+        <div class="skills-container">
+          <span class="skill-tag">Google Cloud Platform</span>
+          <span class="skill-tag">Azure Sandboxes</span>
+          <span class="skill-tag">CI/CD Pipelines</span>
+          <span class="skill-tag">Docker Containerization</span>
+          <span class="skill-tag">Linux Administration</span>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="color: var(--primary-purple); margin-bottom: 12px;">🗄️ Database Management</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Designing robust relational database schemas, query optimization, and constraint management.</p>
+        <div class="skills-container">
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">pgAdmin</span>
+          <span class="skill-tag">Schema Design</span>
+          <span class="skill-tag">SQL Optimization</span>
+          <span class="skill-tag">Relational Data</span>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="color: #f72585; margin-bottom: 12px;">🎙️ Speech & Vocal Polish</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 15px;">Dedicated focus on structured phonetics, English pronunciation, and clear professional speech delivery.</p>
+        <div class="skills-container">
+          <span class="skill-tag">IPA Phonetics</span>
+          <span class="skill-tag">Pitch Modulation</span>
+          <span class="skill-tag">Stress Patterns</span>
+          <span class="skill-tag">Executive Presentation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Matrimonial Profile Section -->
+  <section class="section" id="matrimonial">
+    <div class="glass-card" style="padding: 40px;">
+      <h2 class="section-title" style="text-align: left; margin-bottom: 8px;">
+        💍 Matrimonial <span class="glow-text">Profile Overview</span>
+      </h2>
+      <p style="color: var(--text-muted); margin-bottom: 30px;">Personal, educational, and background details for matrimonial consideration.</p>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="color: var(--primary-blue); margin-bottom: 18px; border-bottom: 1px solid var(--border-glow); padding-bottom: 8px;">Personal Particulars</h3>
+          <div class="info-list">
+            <div class="info-item">
+              <span class="label">Full Name</span>
+              <span class="value">Salil Rashid Shaikh</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Age</span>
+              <span class="value">27 Years</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Residing City</span>
+              <span class="value">Chhatrapati Sambhajinagar (Aurangabad)</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Profession</span>
+              <span class="value">DevOps & Cloud Administrator</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Marital Status</span>
+              <span class="value">Never Married</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="color: var(--primary-purple); margin-bottom: 18px; border-bottom: 1px solid var(--border-glow); padding-bottom: 8px;">Core Values & Background</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px;">
+            Raised with strong family values, mutual respect, and modern progressive thinking. Seeking an understanding, educated, and supportive partner to build a harmonious life together.
+          </p>
+          <div style="background: rgba(157, 78, 221, 0.1); border: 1px dashed var(--primary-purple); border-radius: var(--radius-md); padding: 16px;">
+            <p style="font-size: 0.9rem; color: var(--text-main);">
+              <strong>📄 Complete Profile & Resume:</strong> You can download the complete professional CV or view profile images directly on this page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery Section -->
+  <section class="section" id="photos">
+    <h2 class="section-title">Photo <span class="glow-text">Gallery</span></h2>
+    <p class="section-subtitle">Recent pictures preserving original high quality</p>
+
+    <div class="grid-3">
+      <div class="photo-card">
+        <img src="assets/professional-suit.jpeg" alt="Professional Suit Portrait">
+        <div class="photo-card-info">
+          <h4>Executive Portrait</h4>
+          <p>Formal attire portrait</p>
+        </div>
+      </div>
+
+      <div class="photo-card">
+        <img src="assets/workplace-formal.jpeg" alt="Workplace Formal Attire">
+        <div class="photo-card-info">
+          <h4>Workplace Formal</h4>
+          <p>Professional work environment</p>
+        </div>
+      </div>
+
+      <div class="photo-card">
+        <img src="assets/matrimonial-current.jpeg" alt="Casual Recent Photo">
+        <div class="photo-card-info">
+          <h4>Smart Casual</h4>
+          <p>Recent casual portrait</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Actions -->
+  <section class="section" id="contact" style="text-align: center;">
+    <div class="glass-card" style="max-width: 700px; margin: 0 auto;">
+      <h2 class="section-title">Get In <span class="glow-text">Touch</span></h2>
+      <p style="color: var(--text-muted); margin-bottom: 24px;">For professional opportunities or matrimonial inquiries, feel free to reach out.</p>
+      
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+        <a href="assets/Salil_Shaikh_Resume.pdf" class="btn btn-primary" download target="_blank">
+          📥 Download Resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <p>© 2026 Salil Rashid Shaikh. All rights reserved.</p>
+    <p style="font-size: 0.8rem; margin-top: 6px; color: rgba(255,255,255,0.4);">Designed with Futuristic Blue-Purple Glow & AI Interactive Background Canvas</p>
+  </div>
+</footer>
+
+<!-- Interactive Neural Network & Particle Canvas Script -->
+<script>
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+
+let width, height;
+let particles = [];
+
+function resize() {
+  width = canvas.width = window.innerWidth;
+  height = canvas.height = window.innerHeight;
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.8;
+    this.vy = (Math.random() - 0.5) * 0.8;
+    this.radius = Math.random() * 2 + 1;
+    this.color = Math.random() > 0.5 ? '#00d2ff' : '#9d4edd';
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = this.color;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+// Create particles
+const particleCount = Math.min(Math.floor(window.innerWidth / 15), 70);
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+let mouse = { x: null, y: null, radius: 150 };
+window.addEventListener('mousemove', (e) => {
+  mouse.x = e.x;
+  mouse.y = e.y;
+});
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+
+  let bgGradient = ctx.createRadialGradient(width / 2, height / 2, 100, width / 2, height / 2, Math.max(width, height));
+  bgGradient.addColorStop(0, '#0a0526');
+  bgGradient.addColorStop(1, '#030014');
+  ctx.fillStyle = bgGradient;
+  ctx.fillRect(0, 0, width, height);
+
+  for (let a = 0; a < particles.length; a++) {
+    for (let b = a + 1; b < particles.length; b++) {
+      let dx = particles[a].x - particles[b].x;
+      let dy = particles[a].y - particles[b].y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < 130) {
+        let opacity = 1 - (distance / 130);
+        ctx.strokeStyle = `rgba(157, 78, 221, ${opacity * 0.35})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(particles[a].x, particles[a].y);
+        ctx.lineTo(particles[b].x, particles[b].y);
+        ctx.stroke();
+      }
+    }
+  }
+
+  particles.forEach(p => {
+    p.update();
+    p.draw();
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
