@@ -124,6 +124,22 @@ h2{font-size:clamp(2rem,3.5vw,3rem);line-height:1.12;letter-spacing:-.04em;margi
  border-radius:24px;
 }
 
+
+/* Matrimonial photo carousel */
+.matri-carousel{position:relative;width:100%;height:100%;overflow:hidden;border-radius:24px;background:#f4efe7}
+.matri-carousel .matri-slide{display:none;width:100%;height:100%;margin:0;background:#f4efe7}
+.matri-carousel .matri-slide.active{display:block;animation:matriFade .35s ease}
+.matri-carousel .matri-slide img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center;border-radius:24px}
+@keyframes matriFade{from{opacity:.45}to{opacity:1}}
+.matri-carousel-btn{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:40px;height:40px;border:1px solid rgba(255,255,255,.75);border-radius:50%;background:rgba(20,25,35,.62);color:#fff;font-size:1.45rem;line-height:1;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
+.matri-carousel-btn:hover{background:rgba(20,25,35,.88);transform:translateY(-50%) scale(1.05)}
+.matri-carousel-btn.prev{left:12px}.matri-carousel-btn.next{right:12px}
+.matri-carousel-dots{position:absolute;z-index:3;left:0;right:0;bottom:15px;display:flex;justify-content:center;gap:8px}
+.matri-carousel-dot{width:9px;height:9px;padding:0;border:1px solid white;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer}
+.matri-carousel-dot.active{background:#fff;transform:scale(1.18)}
+.matri-carousel-count{position:absolute;z-index:3;top:12px;right:12px;padding:5px 9px;border-radius:999px;background:rgba(20,25,35,.62);color:white;font-size:.75rem;letter-spacing:.04em}
+@media(prefers-reduced-motion:reduce){.matri-carousel .matri-slide.active{animation:none}}
+
 .matri-stamp{position:absolute;right:-13px;bottom:20px;background:#fffdf9;color:#86652f;border:1px solid #e8d8b9;padding:12px 16px;border-radius:13px;font-weight:800;box-shadow:0 12px 30px rgba(61,43,20,.1)}
 
 .matri-title{font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.3rem,4vw,3.8rem);line-height:1.05;color:#30271b;margin:0 0 10px;letter-spacing:-.04em}
@@ -433,7 +449,29 @@ body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opa
 
   <div class="matri-hero">
    <div class="matri-photo-wrap">
-    <img class="matri-photo" src="assets/matrimonial-current1.jpeg" alt="Salil Shaikh in a light blue shirt and cap">
+    <div class="matri-carousel" id="matriCarousel" aria-label="Matrimonial profile photos">
+     <figure class="matri-slide active"><img src="assets/matrimonial-current1.jpeg" alt="Salil Shaikh — profile photo 1" loading="eager"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-current.jpeg" alt="Salil Shaikh — profile photo 2" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-current3.jpeg" alt="Salil Shaikh — profile photo 3" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-current.png" alt="Salil Shaikh — profile photo 4" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-01.png" alt="Salil Shaikh — profile photo 5" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-02.png" alt="Salil Shaikh — profile photo 6" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-03.png" alt="Salil Shaikh — profile photo 7" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-04.png" alt="Salil Shaikh — profile photo 8" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-05.png" alt="Salil Shaikh — profile photo 9" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-06.png" alt="Salil Shaikh — profile photo 10" loading="lazy"></figure>
+     <figure class="matri-slide"><img src="assets/matrimonial-extra-07.png" alt="Salil Shaikh — profile photo 11" loading="lazy"></figure>
+     <!-- Future photos: add another matri-slide figure here; navigation dots are generated automatically. -->
+     <button class="matri-carousel-btn prev" type="button" aria-label="Previous photo">&#8249;</button>
+     <button class="matri-carousel-btn next" type="button" aria-label="Next photo">&#8250;</button>
+     <div class="matri-carousel-count" aria-live="polite">1 / 4</div>
+     <div class="matri-carousel-dots" aria-label="Choose a photo">
+      <button class="matri-carousel-dot active" type="button" aria-label="Show photo 1"></button>
+      <button class="matri-carousel-dot" type="button" aria-label="Show photo 2"></button>
+      <button class="matri-carousel-dot" type="button" aria-label="Show photo 3"></button>
+      <button class="matri-carousel-dot" type="button" aria-label="Show photo 4"></button>
+     </div>
+    </div>
    </div>
 
    <div>
@@ -516,6 +554,58 @@ document.querySelectorAll('.navlinks a').forEach(a =>
   document.querySelector('.navlinks').classList.remove('open')
  )
 );
+
+// Matrimonial photo carousel: manual controls plus gentle auto-advance.
+(() => {
+ const carousel = document.getElementById('matriCarousel');
+ if (!carousel) return;
+ const slides = Array.from(carousel.querySelectorAll('.matri-slide'));
+ const dotsWrap = carousel.querySelector('.matri-carousel-dots');
+ if (dotsWrap) {
+   dotsWrap.innerHTML = '';
+   slides.forEach((_, i) => {
+     const dot = document.createElement('button');
+     dot.type = 'button';
+     dot.className = 'matri-carousel-dot' + (i === 0 ? ' active' : '');
+     dot.setAttribute('aria-label', `Show photo ${i + 1}`);
+     dotsWrap.appendChild(dot);
+   });
+ }
+ const dots = Array.from(carousel.querySelectorAll('.matri-carousel-dot'));
+ const counter = carousel.querySelector('.matri-carousel-count');
+ const prev = carousel.querySelector('.matri-carousel-btn.prev');
+ const next = carousel.querySelector('.matri-carousel-btn.next');
+ let current = 0;
+ let timer = null;
+ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function show(index) {
+   current = (index + slides.length) % slides.length;
+   slides.forEach((slide, i) => {
+     slide.classList.toggle('active', i === current);
+     slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+   });
+   dots.forEach((dot, i) => {
+     dot.classList.toggle('active', i === current);
+     dot.setAttribute('aria-current', i === current ? 'true' : 'false');
+   });
+   if (counter) counter.textContent = `${current + 1} / ${slides.length}`;
+ }
+ function stopTimer() { if (timer) { clearInterval(timer); timer = null; } }
+ function startTimer() {
+   stopTimer();
+   if (!reducedMotion && slides.length > 1) timer = setInterval(() => show(current + 1), 5000);
+ }
+ prev.addEventListener('click', () => { show(current - 1); startTimer(); });
+ next.addEventListener('click', () => { show(current + 1); startTimer(); });
+ dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); startTimer(); }));
+ carousel.addEventListener('mouseenter', stopTimer);
+ carousel.addEventListener('mouseleave', startTimer);
+ carousel.addEventListener('focusin', stopTimer);
+ carousel.addEventListener('focusout', startTimer);
+ show(0);
+ startTimer();
+})();
+
 </script>
 
 </body>
